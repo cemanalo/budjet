@@ -1,3 +1,6 @@
+import 'package:budjet_app/presentation/color_manager.dart';
+import 'package:budjet_app/presentation/font_manager.dart';
+import 'package:budjet_app/presentation/styles_manager.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -27,19 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Text(
             widget.title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 27.0,
-            ),
+            style:
+                getSemiBoldStyle(fontSize: FontSize.s28, color: Colors.black),
           )
         ]),
         leading: IconButton(
@@ -117,18 +105,20 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               'Balance',
-              style: TextStyle(
-                color: Color(0xFF8A8A8E),
-                fontSize: 18.3,
+              style: getRegularStyle(
+                fontSize: FontSize.s18,
+                color: ColorManager.lightGray,
               ),
             ),
-            const Text('₱ 82.45',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 36.5,
-                    fontWeight: FontWeight.w700)),
+            Text(
+              '\$82.45',
+              style: getSemiBoldStyle(
+                fontSize: FontSize.s36,
+                color: Colors.black,
+              ),
+            ),
             const SizedBox(
               height: 20.0,
             ),
@@ -377,7 +367,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          print("increment");
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
